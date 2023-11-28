@@ -36,7 +36,7 @@ class Player(pygame.sprite.Sprite):
         # seeds
         self.seeds = ["corn", "tomato"]
         self.seed_index = 0
-        self.selected_seed = self.tools[self.seed_index]
+        self.selected_seed = self.seeds[self.seed_index]
 
     def use_tool(self):
         pass
