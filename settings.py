@@ -11,6 +11,13 @@ OVERLAY_POSITIONS = {
     'seed': (70, SCREEN_HEIGHT - 5)
 }
 
+PLAYER_TOOL_OFFSET = {
+	'left': Vector2(-50,40),
+	'right': Vector2(50,40),
+	'up': Vector2(0,-10),
+	'down': Vector2(0,50)
+}
+
 LAYERS = {
 	'water': 0,
 	'ground': 1,
