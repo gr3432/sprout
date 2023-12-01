@@ -84,6 +84,13 @@ class Tree(Generic):
 
     def check_death(self):
         if self.health <= 0:
+            Particle(
+                pos = self.rect.topleft,
+                surf = self.image,
+                groups = self.groups()[0],
+                z = LAYERS['fruit'],
+                duration = 300
+            )
             self.image = self.stump_surf
             self.rect = self.image.get_rect(midbottom = self.rect.midbottom)
             self.hitbox = self.rect.copy().inflate(-10, -self.rect.height * 0.6)
