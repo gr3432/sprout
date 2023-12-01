@@ -83,7 +83,6 @@ class Level:
         self.all_sprites.update(dt)
 
         self.overlay.display()
-        print(self.player.item_inventory)
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
