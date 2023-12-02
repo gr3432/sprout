@@ -64,6 +64,8 @@ class Particle(Generic):
 class Tree(Generic):
     def __init__(self, pos, surf, groups, name, player_add):
         super().__init__(pos, surf, groups)
+        
+        self.all_sprites = groups[0]
 
         # tree attributes
         self.health = 5
@@ -87,7 +89,7 @@ class Tree(Generic):
         # remove apple
         if len(self.apple_sprites.sprites()) > 0:
             random_apple = choice(self.apple_sprites.sprites())
-            Particle(random_apple.rect.topleft, random_apple.image, self.groups()[0], LAYERS['fruit'])
+            Particle(random_apple.rect.topleft, random_apple.image, self.all_sprites, LAYERS['fruit'])
             self.player_add('apple')
             random_apple.kill()
 
@@ -96,7 +98,7 @@ class Tree(Generic):
             Particle(
                 pos = self.rect.topleft,
                 surf = self.image,
-                groups = self.groups()[0],
+                groups = self.all_sprites,
                 z = LAYERS['fruit'],
                 duration = 300
             )
@@ -115,4 +117,4 @@ class Tree(Generic):
             if randint(0, 10) < 2:
                 x = self.rect.left + pos[0]
                 y = self.rect.top + pos[1]
-                Generic((x, y), self.apple_surf, [self.apple_sprites, self.groups()[0]], LAYERS['fruit'])
+                a = Generic((x, y), self.apple_surf, [self.apple_sprites, self.all_sprites], LAYERS['fruit'])
