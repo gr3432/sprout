@@ -55,6 +55,37 @@ class SoilLayer:
         for index_row, row in enumerate(self.grid):
             for index_col, cell in enumerate(row):
                 if 'X' in cell:
+                    # tile options
+                    t = 'X' in self.grid[index_row - 1][index_col]
+                    b = 'X' in self.grid[index_row + 1][index_col]
+                    r = 'X' in row[index_col + 1]
+                    l = 'X' in row[index_col - 1]
+
+                    tile_type = 'o'
+
+                    # all sides
+                    if all((t, b, r, l)): tile_type = 'x'
+                    # horizontal tiles only
+                    if l and not any((t, b, r)): tile_type = 'r'
+                    if r and not any((t, b, l)): tile_type = 'l'
+                    if l and r and not any((t, b)): tile_type = 'lr'
+                    # vertical tiles only
+                    if t and not any((b, r, l)): tile_type = 'b'
+                    if b and not any((t, r, l)): tile_type = 't'
+                    if t and b and not any((r, l)): tile_type = 'tb'
+                    # corner tiles
+                    if l and b and not any((t, r)): tile_type = 'tr'
+                    if r and b and not any((t, l)): tile_type = 'tl'
+                    if l and t and not any((b, r)): tile_type = 'br'
+                    if r and t and not any((b, l)): tile_type = 'bl'
+                    # t-shaped tiles
+                    if all((t, b, r)) and not l: tile_type = 'tbr'
+                    if all((t, b, l)) and not r: tile_type = 'tbl'
+                    if all((l, r, t)) and not b: tile_type = 'lrt'
+                    if all((l, r, b)) and not t: tile_type = 'lrb'
+
+
+
                     x = index_col * TILE_SIZE
                     y = index_row * TILE_SIZE
-                    SoilTile((x, y), self.soil_surf, [self.all_sprites, self.soil_sprites])
+                    SoilTile((x, y), self.soil_surfs[tile_type], [self.all_sprites, self.soil_sprites])
