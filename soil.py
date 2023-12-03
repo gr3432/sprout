@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from pytmx.util_pygame import load_pygame
+from support import import_folder_dict
 
 class SoilTile(pygame.sprite.Sprite):
     def __init__(self, pos, surf, groups):
@@ -16,7 +17,7 @@ class SoilLayer:
         self.soil_sprites = pygame.sprite.Group()
 
         # graphichs
-        self.soil_surf = pygame.image.load("../graphics/soil/o.png")
+        self.soil_surfs = import_folder_dict("../graphics/soil")
 
         self.create_soil_grid()
         self.create_hit_rects()
