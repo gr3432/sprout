@@ -111,6 +111,9 @@ class Level:
                 apple.kill()
             tree.create_fruit()
 
+        # sky
+        self.sky.start_color = [255, 255, 255]
+
     def plant_collision(self):
         if self.soil_layer.plant_sprites:
             for plant in self.soil_layer.plant_sprites.sprites():
