@@ -9,6 +9,7 @@ from transition import Transition
 from soil import SoilLayer
 from sky import Rain, Sky
 from random import randint
+from menu import Menu
 
 class Level:
     def __init__(self):
@@ -34,6 +35,7 @@ class Level:
 
         # shop
         self.shop_active = False
+        self.menu = Menu(self.player, self.toggle_shop)
 
     def setup(self):
         tmx_data = load_pygame("../data/map.tmx")
@@ -136,18 +138,23 @@ class Level:
                     self.soil_layer.grid[row][col].remove('P')
 
     def run(self, dt):
+        # drawing logic
         self.display_surface.fill("black")
         # self.all_sprites.draw(self.display_surface)
         self.all_sprites.custom_draw(self.player)
-        self.all_sprites.update(dt)
-        self.plant_collision()
 
+        # updates
+        if self.shop_active:
+            self.menu.update()
+        else:
+            self.all_sprites.update(dt)
+            self.plant_collision()
+
+        # weather
         self.overlay.display()
-
         # rain
-        if self.raining:
+        if self.raining and not self.shop_active:
             self.rain.update()
-
         # daytime
         self.sky.display(dt)
 
