@@ -82,9 +82,15 @@ class Tree(Generic):
 
         self.player_add = player_add
 
+        # sounds
+        self.axe_sound = pygame.mixer.Sound("../audio/axe.mp3")
+
     def damage(self):
         # damage tree
         self.health -= 1
+
+        # play sound
+        self.axe_sound.play()
 
         # remove apple
         if len(self.apple_sprites.sprites()) > 0:
