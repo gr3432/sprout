@@ -42,7 +42,7 @@ class Player:
 
 def read_pos(data):
     data = data.split(",")
-    return int(str[0]), int(str[1])
+    return int(data[0]), int(data[1])
 
 def make_pos(pos):
     return str(pos[0]) + "," + str(pos[1])
