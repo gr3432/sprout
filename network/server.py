@@ -41,7 +41,7 @@ def threaded_client(conn, player):
                     reply = pos[1]
                 print("Received: ", data)
                 print("Sending: ", reply)
-            conn.sendall(str.encode(make_pos(reply)))
+                conn.sendall(str.encode(make_pos(reply)))
         except:
             break
     
