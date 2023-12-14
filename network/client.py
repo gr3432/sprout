@@ -8,18 +8,6 @@ height = 500
 win = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Client")
 
-clientNumber = 0
-
-
-
-def read_pos(data):
-    data = data.split(",")
-    return int(data[0]), int(data[1])
-
-def make_pos(pos):
-    return str(pos[0]) + "," + str(pos[1])
-
-
 def redrawWindow(win, player, player2):
     win.fill((255, 255, 255))
     player.draw(win)
@@ -29,18 +17,13 @@ def redrawWindow(win, player, player2):
 def main():
     run = True
     n = Network()
-    startPos = read_pos(n.getPos())
-    p = Player(startPos[0], startPos[1], 100, 100, (0, 255, 0))
-    p2 = Player(0, 0, 100, 100, (0, 255, 0))
+    p = n.getP()
+
     clock = pygame.time.Clock()
 
     while run:
         clock.tick(60)
-
-        p2Pos = read_pos(n.send(make_pos((p.x, p.y))))
-        p2.x = p2Pos[0]
-        p2.y = p2Pos[1]
-        p2.update()
+        p2 = n.send(p)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
