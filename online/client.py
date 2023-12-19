@@ -34,6 +34,9 @@ def redrawWindow(win, game, p):
     win.fill((128, 128, 128))
     pass
 
+btns = [Button("Rock", 50, 500, (0, 0, 0)),
+        Button("Scissors", 250, 500, (255, 0, 0)),
+        Button("Paper", 450, 500, (0, 255, 0))]
 def main():
     pass
 
