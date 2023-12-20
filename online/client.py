@@ -38,7 +38,41 @@ btns = [Button("Rock", 50, 500, (0, 0, 0)),
         Button("Scissors", 250, 500, (255, 0, 0)),
         Button("Paper", 450, 500, (0, 255, 0))]
 def main():
-    pass
+    run = True
+    clock = pygame.time.Clock()
+    n = Network()
+    player = int(n.getP())
+    print("You are player", player)
+
+    while run:
+        clock.tick(60)
+        try:
+            game = n.send("get")
+        except:
+            run = False
+            print("Couldn't get game")
+            break
+
+        if game.bothWent():
+            redrawWindow()
+            pygame.time.delay(500)
+            try:
+                game = n.send("reset")
+            except:
+                run = False
+                print("Couldn't get game")
+                break
+
+            font = pygame.font.SysFont("comicsans", 90)
+            if (game.winner() == 1 and player == 1) or (game.winner() == 0 and player == 0):
+                text = font.render("You won!", 1, (255, 0, 0))
+            elif game.winner == -1:
+                text = font.render("Tie game!", 1, (255, 0, 0))
+            else:
+                text = font.render("You lost!", 1, (255, 0, 0))
+            win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get.height()/2))
+            pygame.display.update()
+            pygame.time.delay(2000)
 
 if __name__ == "__main__":
     main()
