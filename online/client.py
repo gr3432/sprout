@@ -45,6 +45,34 @@ def redrawWindow(win, game, p):
         text = font.render("Opponent", 1, (0, 255, 255))
         win.blit(text, (380, 200))
 
+        move1 = game.get_player_move(0)
+        move2 = game.get_player_move(1)
+        if game.bothWent():
+            text1 = font.render(move1, 1, (0, 0, 0))
+            text2 = font.render(move2, 1, (0, 0, 0))
+        else:
+            if game.p1Went and p == 0:
+                text1 = font.render(move1, 1, (0, 0, 0))
+            elif game.p1Went:
+                text1 = font.render("Locked in", 1, (0, 0, 0))
+            else:
+                text1 = font.render("Waiting...", 1, (0, 0, 0))
+
+            if game.p2Went and p == 1:
+                text2 = font.render(move2, 1, (0, 0, 0))
+            elif game.p1Went:
+                text2 = font.render("Locked in", 1, (0, 0, 0))
+            else:
+                text2 = font.render("Waiting...", 1, (0, 0, 0))
+
+            if p == 1:
+                win.blit(text2, (100, 350))
+                win.blit(text1, (400, 350))
+            else:
+                win.blit(text1, (100, 350))
+                win.blit(text2, (400, 350))
+
+
 btns = [Button("Rock", 50, 500, (0, 0, 0)),
         Button("Scissors", 250, 500, (255, 0, 0)),
         Button("Paper", 450, 500, (0, 255, 0))]
