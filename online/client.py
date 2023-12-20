@@ -74,5 +74,23 @@ def main():
             pygame.display.update()
             pygame.time.delay(2000)
 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+                pygame.quit()
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()
+                for btn in btns:
+                    if btn.click(pos) and game.connected():
+                        if player == 0:
+                            if not game.p1Went:
+                                n.send(btn.text)
+                        else:
+                            if not game.p2Went:
+                                n.send(btn.text)
+
+        redrawWindow(win, game, p)
+
 if __name__ == "__main__":
     main()
