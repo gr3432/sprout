@@ -63,10 +63,11 @@ while True:
     print("Connected to: ", addr)
 
     idCount += 1
+    p = 0
     gameId = (idCount - 1) // 2
     if idCount % 2 == 1:
         games[gameId] = Game(gameId)
-        print("Creating new game...")
+        print("Creating new game...", gameId)
     else:
         games[gameId].ready = True
         p = 1
