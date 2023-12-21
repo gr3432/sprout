@@ -98,7 +98,7 @@ def main():
             break
 
         if game.bothWent():
-            redrawWindow()
+            redrawWindow(win, game, player)
             pygame.time.delay(500)
             try:
                 game = n.send("reset")
@@ -134,7 +134,7 @@ def main():
                             if not game.p2Went:
                                 n.send(btn.text)
 
-        redrawWindow(win, game, p)
+        redrawWindow(win, game, player)
 
 if __name__ == "__main__":
     main()
