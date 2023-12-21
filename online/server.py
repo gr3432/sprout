@@ -1,6 +1,5 @@
 import socket
 from _thread import start_new_thread
-from player import Player
 import pickle
 from game import Game
 
