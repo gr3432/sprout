@@ -35,7 +35,7 @@ def redrawWindow(win, game, p):
     if not(game.connected()):
         font = pygame.font.SysFont("comicsans", 80)
         text = font.render("Waiting for Player...", 1, (255, 0, 0), True)
-        win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height/2))
+        win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
     else:
         font = pygame.font.SysFont("comicsans", 60)
         text = font.render("Your move", 1, (0, 255, 255))
