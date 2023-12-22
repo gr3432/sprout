@@ -113,7 +113,7 @@ def main():
                 text = font.render("Tie game!", 1, (255, 0, 0))
             else:
                 text = font.render("You lost!", 1, (255, 0, 0))
-            win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get.height()/2))
+            win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
             pygame.display.update()
             pygame.time.delay(2000)
 
