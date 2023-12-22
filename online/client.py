@@ -109,7 +109,7 @@ def main():
             font = pygame.font.SysFont("comicsans", 90)
             if (game.winner() == 1 and player == 1) or (game.winner() == 0 and player == 0):
                 text = font.render("You won!", 1, (255, 0, 0))
-            elif game.winner == -1:
+            elif game.winner() == -1:
                 text = font.render("Tie game!", 1, (255, 0, 0))
             else:
                 text = font.render("You lost!", 1, (255, 0, 0))
