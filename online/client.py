@@ -137,8 +137,16 @@ def main():
 
 def menu_screen():
     run = True
+    clock = pygame.time.Clock()
     
     while run:
+        clock.tick(60)
+        win.fill((120, 120, 120))
+        font = pygame.font.SysFont("comicsans", 60)
+        text = font.render("Click to play!", 1, (255, 0, 0))
+        win.blit(text, (100, 200))
+        pygame.display.update()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
