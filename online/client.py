@@ -135,5 +135,19 @@ def main():
 
         redrawWindow(win, game, player)
 
-if __name__ == "__main__":
+def menu_screen():
+    run = True
+    
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                run = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                run = False
+
     main()
+
+
+while True:
+    menu_screen()
