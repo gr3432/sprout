@@ -54,3 +54,10 @@ while True:
                 sockets_list.remove(notified_socket)
                 del clients[notified_socket]
                 continue
+            
+            user = clients[notified_socket]
+            print(f"Received message from {user['data'].decode('utf-8')}: {message['data'].decode('utf-8')}")
+
+            for client_socket in clients:
+                if client_socket != notified_socket:
+                    client_socket.send(user['header'] + user['data'] + message['header'] + message['data'])
