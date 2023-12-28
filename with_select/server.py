@@ -1,4 +1,5 @@
 import socket
+import select
 
 HEADER_LENGTH = 10
 IP = "127.0.0.1"
@@ -28,3 +29,20 @@ def receive_message(client_socket):
     
     except:
         return False
+    
+while True:
+    read_sockets, _, exception_sockets = select.select(sockets_list, [], sockets_list)
+
+    for notified_socket in read_sockets:
+        if notified_socket == server_socket:
+            client_socket, client_address = server_socket.accept
+
+            user = receive_message(client_socket)
+            if user is False:
+                continue
+
+            sockets_list.append(client_socket)
+
+            clients[client_socket] = user
+
+            print(f"Accepted new connection from {client_address[0]}:{client_address[1]} username: {user['data'].decode('utf-8')}")
