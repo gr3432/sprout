@@ -35,7 +35,7 @@ while True:
 
     for notified_socket in read_sockets:
         if notified_socket == server_socket:
-            client_socket, client_address = server_socket.accept
+            client_socket, client_address = server_socket.accept()
 
             user = receive_message(client_socket)
             if user is False:
