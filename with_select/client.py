@@ -1,5 +1,6 @@
 import socket
 import sys
+import errno
 
 HEADER_LENGTH = 10
 IP = "127.0.0.1"
@@ -38,5 +39,15 @@ while True:
             message = client_socket.recv(message_length).decode("utf-8")
 
             print(f"{username} > {message}")
-    except:
-        pass
+
+    except IOError as e:
+        # for non blocking sockets, recv will throw these exceptions
+        # when it has no data available
+        if e.errno != errno.EAGAIN or e.errno != errno.EWOULDBLOCK:
+            print("Reading error", str(e))
+            sys.exit()
+        continue
+
+    except Exception as e:
+        print("General error", str(e))
+        sys.exit()
