@@ -43,7 +43,7 @@ while True:
     except IOError as e:
         # for non blocking sockets, recv will throw these exceptions
         # when it has no data available
-        if e.errno != errno.EAGAIN or e.errno != errno.EWOULDBLOCK:
+        if e.errno != errno.EAGAIN and e.errno != errno.EWOULDBLOCK:
             print("Reading error", str(e))
             sys.exit()
         continue
