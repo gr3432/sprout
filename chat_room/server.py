@@ -48,4 +48,5 @@ def receive():
 if __name__ == "__main__":
     server.bind((host, port))
     server.listen()
+    print("Server is listening...")
     receive()
