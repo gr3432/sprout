@@ -1,4 +1,5 @@
 import socket
+import threading
 
 host = "127.0.0.1"
 port = 7895
@@ -26,3 +27,9 @@ def write():
     while True:
         message = f"{nickname}: {input('')}"
         client.send(message.encode("utf-8"))
+
+receive_thread = threading.Thread(target=receive)
+receive_thread.start()
+
+write_thread = threading.Thread(target=write)
+write_thread.start()
