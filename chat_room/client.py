@@ -21,3 +21,8 @@ def receive():
             print("An error occurred!")
             client.close()
             break
+
+def write():
+    while True:
+        message = f"{nickname}: {input('')}"
+        client.send(message.encode("utf-8"))
